@@ -25,34 +25,43 @@
         <!-- Amount Header -->
         <div class="amount-header">
             <h2 id="transferAmount">-₦0.00</h2>
+            <h3 id="transferTitle" class="recipient-name-header">RECIPIENT NAME</h3>
+            <div class="transaction-time" id="transactionTime">On Oct 26, 2025 at 01:32 PM</div>
         </div>
 
-        <!-- Transfer Info -->
+        <!-- Category Badge -->
         <div class="transfer-info">
-            <h2 id="transferTitle">RECIPIENT NAME</h2>
-            <div class="transaction-time" id="transactionTime">On Oct 26, 2025 at 01:32 PM</div>
-
             <div class="category-badge">
-                <div class="category-icon">🚗</div>
-                <span class="category-text">Transport</span>
+                <div class="category-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" fill="currentColor"/>
+                    </svg>
+                </div>
+                <span class="category-text" id="categoryText">Transport</span>
                 <span class="category-dropdown">▼</span>
             </div>
         </div>
 
         <!-- Recipient Section -->
         <div class="recipient-section">
-            <div class="recipient-label">To</div>
-            <div class="recipient-name">
-                <div class="recipient-icon">💳</div>
-                <span id="recipientName">PALMPAY</span>
+            <div class="detail-row">
+                <span class="label">To</span>
+                <div class="value-with-icon">
+                    <div class="recipient-icon-small">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 10H22" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <span id="recipientName" class="value">PALMPAY</span>
+                </div>
             </div>
         </div>
 
         <!-- Description -->
         <div class="transaction-details">
-            <h3>Description</h3>
             <div class="detail-row">
-                <span class="label"></span>
+                <span class="label">Description</span>
                 <span class="value" id="description">Transport</span>
             </div>
         </div>

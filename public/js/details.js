@@ -61,8 +61,15 @@ function displayTransaction() {
         document.getElementById('recipientName').textContent = 'WALLET';
     }
 
-    // Update description
-    document.getElementById('description').textContent = currentTransaction.description || currentTransaction.title || 'Transfer';
+    // Update description (use narration if available)
+    const narration = currentTransaction.narration || currentTransaction.description || currentTransaction.title || 'Transfer';
+    document.getElementById('description').textContent = narration;
+
+    // Update category text (also use narration)
+    const categoryTextEl = document.getElementById('categoryText');
+    if (categoryTextEl) {
+        categoryTextEl.textContent = narration;
+    }
 
     // Update account number
     if (currentTransaction.type === 'debit' && currentTransaction.accountNumber) {

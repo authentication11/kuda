@@ -53,10 +53,16 @@
                         <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z" fill="currentColor"/>
                     </svg>
                     Naira Account - 2054502723
+                    <button class="copy-account-btn" onclick="copyAccountNumber()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                            <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
                 </div>
                 <div class="currency-selector">
                     <span style="display: flex; align-items: center; gap: 4px;">
-                        <span style="font-size: 16px;">🇳🇬</span> NGN
+                        <span style="font-size: 16px;">🇳🇬</span> <span class="currency-text">NGN</span>
                     </span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                         <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -74,15 +80,19 @@
 
             <div class="action-buttons-row">
                 <button class="transfer-btn" onclick="goToTransfer()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 5V19M5 12L12 19L19 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <div class="btn-icon-wrapper">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     Transfer
                 </button>
                 <button class="add-money-btn" onclick="goToAddMoney()">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M12 5V19M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    <div class="btn-icon-wrapper">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     Add Money
                 </button>
             </div>
@@ -90,7 +100,11 @@
 
         <!-- Overdraft Banner -->
         <div class="overdraft-banner">
-            <div class="overdraft-icon">💰</div>
+            <div class="overdraft-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13.41 18.09V19.5H10.74V18.13C9.45 17.88 8.35 17.16 7.96 15.96L9.65 15.31C9.89 16.03 10.5 16.69 11.73 16.69C12.83 16.69 13.52 16.1 13.52 15.33C13.52 14.56 13.02 14.1 11.57 13.66C9.73 13.09 8.56 12.28 8.56 10.58C8.56 9.19 9.61 8.15 10.74 7.84V6.5H13.41V7.81C14.47 8.05 15.2 8.66 15.63 9.61L13.97 10.28C13.72 9.68 13.21 9.18 12.15 9.18C11.22 9.18 10.52 9.68 10.52 10.39C10.52 11.1 11.07 11.46 12.45 11.93C14.29 12.5 15.48 13.3 15.48 15.03C15.48 16.42 14.47 17.54 13.41 18.09Z" fill="#6B4C9A"/>
+                </svg>
+            </div>
             <div class="overdraft-text">
                 <h3>Overdraft Offer</h3>
                 <p>Get money when you need it! Tap here for details.</p>
@@ -100,12 +114,12 @@
         <!-- Quick Access -->
         <div class="quick-actions-header">
             <h3>Quick Access</h3>
-            <button onclick="alert('Edit feature coming soon!')">Edit</button>
+            <button class="edit-btn" onclick="alert('Edit feature coming soon!')">Edit</button>
         </div>
         <div class="quick-actions">
             <div class="action-item" onclick="alert('Airtime feature coming soon!')">
                 <div class="action-icon airtime">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
                         <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
@@ -115,8 +129,9 @@
 
             <div class="action-item" onclick="alert('Internet feature coming soon!')">
                 <div class="action-icon internet">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M17 8L21 12L17 16M7 8L3 12L7 16M14 4L10 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm10-8a8 8 0 00-7.391 11h14.782A8 8 0 0012 4zm-7.391 13A8 8 0 0019.391 17H4.609z" fill="currentColor"/>
+                        <path d="M12 4c-2.21 0-4 3.582-4 8s1.79 8 4 8 4-3.582 4-8-1.79-8-4-8z" fill="currentColor"/>
                     </svg>
                 </div>
                 <span>Internet</span>
@@ -124,10 +139,8 @@
 
             <div class="action-item" onclick="alert('Betting feature coming soon!')">
                 <div class="action-icon betting">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M21 16V8C21 6.89543 20.1046 6 19 6H5C3.89543 6 3 6.89543 3 8V16C3 17.1046 3.89543 18 5 18H19C20.1046 18 21 17.1046 21 16Z" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="8" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
-                        <circle cx="16" cy="12" r="2" stroke="currentColor" stroke-width="2"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
                     </svg>
                 </div>
                 <span>Betting</span>
@@ -135,8 +148,8 @@
 
             <div class="action-item" onclick="alert('Electricity feature coming soon!')">
                 <div class="action-icon electricity">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor"/>
                     </svg>
                 </div>
                 <span>Electricity</span>
