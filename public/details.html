@@ -15,126 +15,126 @@
         <div class="details-header">
             <button class="back-btn" onclick="window.history.back()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
-            <h1>Transaction Details</h1>
-            <div class="profile-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
+            <h1>Transaction</h1>
+            <button class="share-btn-header" onclick="shareReceipt()">Share</button>
         </div>
 
-        <!-- Bank Icon -->
-        <div class="bank-icon">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                <rect width="60" height="60" rx="30" fill="url(#bankGradient)"/>
-                <defs>
-                    <linearGradient id="bankGradient" x1="0" y1="0" x2="60" y2="60">
-                        <stop offset="0%" stop-color="#6a11cb"/>
-                        <stop offset="100%" stop-color="#2575fc"/>
-                    </linearGradient>
-                </defs>
-                <path d="M30 20L38 28H34V40H26V28H22L30 20Z" fill="white"/>
-            </svg>
+        <!-- Amount Header -->
+        <div class="amount-header">
+            <h2 id="transferAmount">-₦0.00</h2>
         </div>
 
         <!-- Transfer Info -->
         <div class="transfer-info">
-            <h2 id="transferTitle">Transfer to RECIPIENT NAME</h2>
-            <div class="amount-large" id="transferAmount">₦0.00</div>
-            <div class="status-success">Successful</div>
-        </div>
+            <h2 id="transferTitle">RECIPIENT NAME</h2>
+            <div class="transaction-time" id="transactionTime">On Oct 26, 2025 at 01:32 PM</div>
 
-        <!-- Progress Steps -->
-        <div class="progress-steps">
-            <div class="steps-container">
-                <div class="step">
-                    <div class="step-icon">✓</div>
-                    <div class="step-text">
-                        <div class="step-title">Payment successful</div>
-                        <div class="step-time" id="step1Time">--</div>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-icon">✓</div>
-                    <div class="step-text">
-                        <div class="step-title">Processing by bank</div>
-                        <div class="step-time" id="step2Time">--</div>
-                    </div>
-                </div>
-                <div class="step">
-                    <div class="step-icon">✓</div>
-                    <div class="step-text">
-                        <div class="step-title">Received by bank</div>
-                        <div class="step-time" id="step3Time">--</div>
-                    </div>
-                </div>
+            <div class="category-badge">
+                <div class="category-icon">🚗</div>
+                <span class="category-text">Transport</span>
+                <span class="category-dropdown">▼</span>
             </div>
         </div>
 
-        <!-- Disclaimer -->
-        <div class="disclaimer">
-            The recipient account is expected to be credited within 5 minutes, subject to notification by the bank. If you have any questions, you can also <a href="#" class="contact-link">contact the recipient bank</a>.
-        </div>
-
-        <!-- Transaction Summary -->
-        <div class="transaction-summary">
-            <h3>Amount</h3>
-            <div class="summary-row">
-                <span class="label">Amount</span>
-                <span class="value" id="summaryAmount">₦0.00</span>
-            </div>
-            <div class="summary-row">
-                <span class="label">Fee</span>
-                <span class="value"><span class="strikethrough">₦10.00</span> ₦0.00</span>
-            </div>
-            <div class="summary-row total">
-                <span class="label">Amount Paid</span>
-                <span class="value" id="summaryTotal">₦0.00</span>
+        <!-- Recipient Section -->
+        <div class="recipient-section">
+            <div class="recipient-label">To</div>
+            <div class="recipient-name">
+                <div class="recipient-icon">💳</div>
+                <span id="recipientName">PALMPAY</span>
             </div>
         </div>
 
-        <!-- Transaction Details -->
+        <!-- Description -->
         <div class="transaction-details">
-            <h3>Transaction Details</h3>
+            <h3>Description</h3>
             <div class="detail-row">
-                <span class="label">Recipient Details</span>
-                <span class="value" id="recipientDetails" style="line-height: 1.5;">--</span>
+                <span class="label"></span>
+                <span class="value" id="description">Transport</span>
             </div>
-            <div class="detail-row">
-                <span class="label">Transaction No.</span>
-                <span class="value" id="transactionNo">--</span>
-            </div>
-            <div class="detail-row">
+        </div>
+
+        <!-- Payment Method & Fees -->
+        <div class="transaction-summary">
+            <div class="summary-row">
                 <span class="label">Payment Method</span>
-                <span class="value">Wallet</span>
+                <span class="value">Outward Transfer</span>
             </div>
-            <div class="detail-row">
-                <span class="label">Transaction Date</span>
-                <span class="value" id="transactionDate">--</span>
+            <div class="summary-row">
+                <span class="label">Fees</span>
+                <span class="value" id="fees">₦10.00</span>
             </div>
+        </div>
+
+        <!-- Account Number -->
+        <div class="transaction-details">
             <div class="detail-row">
-                <span class="label">Session ID</span>
-                <span class="value" id="sessionId">--</span>
+                <span class="label">Account Number</span>
+                <div class="value value-with-copy">
+                    <span id="accountNumber">9550456443</span>
+                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" onclick="copyToClipboard('accountNumber')">
+                        <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transaction Reference -->
+        <div class="transaction-details">
+            <div class="detail-row">
+                <span class="label">Transaction Reference</span>
+                <div class="value value-with-copy">
+                    <span id="transactionRef" style="font-size: 11px; word-break: break-all;">090267251026123202054502723378PP</span>
+                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" onclick="copyToClipboard('transactionRef')">
+                        <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
             </div>
         </div>
 
         <!-- More Actions -->
         <div class="more-actions">
-            <h4>More Actions</h4>
-            <div class="action-row">
-                <span class="label">Category</span>
-                <span class="value">Transfer  ></span>
-            </div>
+            <h3>More Actions</h3>
         </div>
 
         <!-- Bottom Actions -->
         <div class="bottom-actions">
-            <button class="report-btn" onclick="window.location.href='/dashboard.html'">Back to Dashboard</button>
-            <button class="share-btn" onclick="shareReceipt()">Share Receipt</button>
+            <button class="action-item-btn">
+                <div class="action-left">
+                    <div class="action-icon-btn repeat">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M17 1L21 5M21 5L17 9M21 5H7C5.67392 5 4.40215 5.52678 3.46447 6.46447C2.52678 7.40215 2 8.67392 2 10C2 11.3261 2.52678 12.5979 3.46447 13.5355C4.40215 14.4732 5.67392 15 7 15H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 23L3 19M3 19L7 15M3 19H17C18.3261 19 19.5979 18.4732 20.5355 17.5355C21.4732 16.5979 22 15.3261 22 14C22 12.6739 21.4732 11.4021 20.5355 10.4645C19.5979 9.52678 18.3261 9 17 9H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="action-text">
+                        <h4>Repeat Transaction</h4>
+                        <p>Make this payment again now.</p>
+                    </div>
+                </div>
+                <span class="action-arrow">›</span>
+            </button>
+
+            <button class="action-item-btn">
+                <div class="action-left">
+                    <div class="action-icon-btn report">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 8V12M12 16H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="action-text">
+                        <h4>Report Transaction</h4>
+                        <p>Report an issue with this payment</p>
+                    </div>
+                </div>
+                <span class="action-arrow">›</span>
+            </button>
         </div>
     </div>
 

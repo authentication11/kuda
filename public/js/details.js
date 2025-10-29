@@ -28,69 +28,66 @@ function loadData() {
 function displayTransaction() {
     if (!currentTransaction) return;
 
-    // Update title
+    // Update amount (with negative sign for debit)
+    const amountValue = parseFloat(currentTransaction.amount);
+    const amountSign = currentTransaction.type === 'debit' ? '-' : '+';
+    const amount = `${amountSign}₦${amountValue.toLocaleString('en-NG', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    document.getElementById('transferAmount').textContent = amount;
+
+    // Update title/recipient name
     const title = currentTransaction.type === 'credit'
-        ? currentTransaction.title || 'Top-up'
-        : `Transfer to ${currentTransaction.accountName}`;
+        ? (currentTransaction.title || 'WALLET TOP-UP')
+        : (currentTransaction.accountName || 'RECIPIENT').toUpperCase();
     document.getElementById('transferTitle').textContent = title;
 
-    // Update amount
-    const amount = new Intl.NumberFormat('en-NG', {
-        style: 'currency',
-        currency: 'NGN'
-    }).format(currentTransaction.amount);
-
-    document.getElementById('transferAmount').textContent = amount;
-    document.getElementById('summaryAmount').textContent = amount;
-    document.getElementById('summaryTotal').textContent = amount;
-
-    // Update recipient details
-    if (currentTransaction.type === 'debit') {
-        document.getElementById('recipientDetails').innerHTML =
-            `${currentTransaction.accountName}<br>${currentTransaction.bankName} | ${currentTransaction.accountNumber}`;
-    } else {
-        document.getElementById('recipientDetails').innerHTML =
-            `${currentTransaction.accountName || 'Wallet Top-up'}`;
-    }
-
-    // Update transaction number
-    document.getElementById('transactionNo').textContent = currentTransaction.referenceNumber || '--';
-
-    // Update transaction date
+    // Update transaction time
     const date = new Date(currentTransaction.date);
     const formattedDate = date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
-        day: 'numeric',
+        day: 'numeric'
+    });
+    const formattedTime = date.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        hour12: true
     });
-    document.getElementById('transactionDate').textContent = formattedDate;
+    document.getElementById('transactionTime').textContent = `On ${formattedDate} at ${formattedTime}`;
 
-    // Update step times
-    const timeStr = date.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
+    // Update recipient name
+    if (currentTransaction.type === 'debit') {
+        document.getElementById('recipientName').textContent = currentTransaction.bankName || 'BANK';
+    } else {
+        document.getElementById('recipientName').textContent = 'WALLET';
+    }
+
+    // Update description
+    document.getElementById('description').textContent = currentTransaction.description || currentTransaction.title || 'Transfer';
+
+    // Update account number
+    if (currentTransaction.type === 'debit' && currentTransaction.accountNumber) {
+        document.getElementById('accountNumber').textContent = currentTransaction.accountNumber;
+    } else {
+        document.getElementById('accountNumber').textContent = '--';
+    }
+
+    // Update transaction reference
+    document.getElementById('transactionRef').textContent = currentTransaction.referenceNumber || '0902672510261232020545027233' + Math.floor(Math.random() * 1000) + 'PP';
+
+    // Update fees
+    document.getElementById('fees').textContent = '₦10.00';
+}
+
+// Copy to clipboard function
+function copyToClipboard(elementId) {
+    const element = document.getElementById(elementId);
+    const text = element.textContent;
+
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Copied to clipboard!');
+    }).catch(err => {
+        console.error('Failed to copy:', err);
     });
-    document.getElementById('step1Time').textContent = timeStr;
-    document.getElementById('step2Time').textContent = timeStr;
-
-    const receivedDate = new Date(date.getTime() + 28000); // +28 seconds
-    const receivedTimeStr = receivedDate.toLocaleDateString('en-GB', {
-        day: '2-digit',
-        month: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    });
-    document.getElementById('step3Time').textContent = receivedTimeStr;
-
-    // Update session ID
-    document.getElementById('sessionId').textContent = '1000042509021437241402499380' + Math.floor(Math.random() * 100);
 }
 
 // Share receipt
