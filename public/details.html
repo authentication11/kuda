@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Details - Kudasavings</title>
+
+    <meta name="theme-color" content="#6a11cb">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/kuda.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="details-container">
+        <!-- Header -->
+        <div class="details-header">
+            <button class="back-btn" onclick="window.history.back()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <h1>Transaction Details</h1>
+            <div class="profile-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Bank Icon -->
+        <div class="bank-icon">
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <rect width="60" height="60" rx="30" fill="url(#bankGradient)"/>
+                <defs>
+                    <linearGradient id="bankGradient" x1="0" y1="0" x2="60" y2="60">
+                        <stop offset="0%" stop-color="#6a11cb"/>
+                        <stop offset="100%" stop-color="#2575fc"/>
+                    </linearGradient>
+                </defs>
+                <path d="M30 20L38 28H34V40H26V28H22L30 20Z" fill="white"/>
+            </svg>
+        </div>
+
+        <!-- Transfer Info -->
+        <div class="transfer-info">
+            <h2 id="transferTitle">Transfer to RECIPIENT NAME</h2>
+            <div class="amount-large" id="transferAmount">₦0.00</div>
+            <div class="status-success">Successful</div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text">
+                        <div class="step-title">Payment successful</div>
+                        <div class="step-time" id="step1Time">--</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text">
+                        <div class="step-title">Processing by bank</div>
+                        <div class="step-time" id="step2Time">--</div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon">✓</div>
+                    <div class="step-text">
+                        <div class="step-title">Received by bank</div>
+                        <div class="step-time" id="step3Time">--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            The recipient account is expected to be credited within 5 minutes, subject to notification by the bank. If you have any questions, you can also <a href="#" class="contact-link">contact the recipient bank</a>.
+        </div>
+
+        <!-- Transaction Summary -->
+        <div class="transaction-summary">
+            <h3>Amount</h3>
+            <div class="summary-row">
+                <span class="label">Amount</span>
+                <span class="value" id="summaryAmount">₦0.00</span>
+            </div>
+            <div class="summary-row">
+                <span class="label">Fee</span>
+                <span class="value"><span class="strikethrough">₦10.00</span> ₦0.00</span>
+            </div>
+            <div class="summary-row total">
+                <span class="label">Amount Paid</span>
+                <span class="value" id="summaryTotal">₦0.00</span>
+            </div>
+        </div>
+
+        <!-- Transaction Details -->
+        <div class="transaction-details">
+            <h3>Transaction Details</h3>
+            <div class="detail-row">
+                <span class="label">Recipient Details</span>
+                <span class="value" id="recipientDetails" style="line-height: 1.5;">--</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Transaction No.</span>
+                <span class="value" id="transactionNo">--</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Payment Method</span>
+                <span class="value">Wallet</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Transaction Date</span>
+                <span class="value" id="transactionDate">--</span>
+            </div>
+            <div class="detail-row">
+                <span class="label">Session ID</span>
+                <span class="value" id="sessionId">--</span>
+            </div>
+        </div>
+
+        <!-- More Actions -->
+        <div class="more-actions">
+            <h4>More Actions</h4>
+            <div class="action-row">
+                <span class="label">Category</span>
+                <span class="value">Transfer  ></span>
+            </div>
+        </div>
+
+        <!-- Bottom Actions -->
+        <div class="bottom-actions">
+            <button class="report-btn" onclick="window.location.href='/dashboard.html'">Back to Dashboard</button>
+            <button class="share-btn" onclick="shareReceipt()">Share Receipt</button>
+        </div>
+    </div>
+
+    <script src="/js/details.js"></script>
+</body>
+</html>

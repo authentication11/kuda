@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Money - Kudasavings</title>
+
+    <meta name="theme-color" content="#6a11cb">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/kuda.png">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- PIN Modal -->
+    <div id="pinModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 32px; border-radius: 20px; max-width: 340px; width: 90%; text-align: center;">
+            <h2 style="font-size: 22px; font-weight: 800; color: #40196d; margin-bottom: 12px;">Enter PIN</h2>
+            <p style="font-size: 14px; color: #666; margin-bottom: 24px;">Enter your 6-digit PIN to continue</p>
+            <input type="password" id="pinInput" maxlength="6" inputmode="numeric" pattern="[0-9]*"
+                   style="width: 100%; padding: 16px; font-size: 24px; letter-spacing: 8px; text-align: center; border: 2px solid #e1e8ed; border-radius: 12px; font-weight: 700; margin-bottom: 12px;"
+                   placeholder="••••••">
+            <div id="pinError" style="color: #e74c3c; font-size: 13px; font-weight: 700; margin-bottom: 16px; display: none;"></div>
+            <button onclick="verifyPin()" style="width: 100%; background: linear-gradient(135deg, #40196d 0%, #491c7d 100%); color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer;">
+                Submit
+            </button>
+            <button onclick="window.location.href='/dashboard.html'" style="width: 100%; background: transparent; color: #666; border: none; padding: 12px; margin-top: 12px; font-size: 14px; font-weight: 700; cursor: pointer;">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <div class="container" id="mainContent" style="display: none;">
+        <!-- Page Header -->
+        <div class="page-header">
+            <button class="back-btn" onclick="window.location.href='/dashboard.html'">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M19 12H5M12 19L5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <h1>Add Money</h1>
+            <div style="width: 24px;"></div>
+        </div>
+
+        <!-- Balance Info -->
+        <div style="background: rgba(106, 17, 203, 0.1); padding: 14px; border-radius: 12px; margin-bottom: 20px;">
+            <div style="font-size: 13px; color: #666; margin-bottom: 4px;">Current Balance</div>
+            <div style="font-size: 26px; font-weight: 800; color: #6a11cb;" id="currentBalance">₦0.00</div>
+        </div>
+
+        <!-- Add Money Form -->
+        <form id="addMoneyForm" class="add-money-form">
+            <div class="form-group">
+                <label for="profileImage">Profile Picture (Optional)</label>
+                <input type="file" id="profileImage" name="profileImage" accept="image/*"
+                       style="width: 100%; padding: 14px; border: 2px solid #e1e8ed; border-radius: 12px; font-size: 14px; background: #fff; cursor: pointer;">
+                <div style="font-size: 11px; color: #666; margin-top: 4px;">This image will appear on your dashboard avatar</div>
+                <div id="imagePreview" style="margin-top: 12px; text-align: center; display: none;">
+                    <img id="previewImg" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #40196d;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="displayName">Display Name *</label>
+                <input type="text" id="displayName" name="displayName" required
+                       placeholder="Enter name to display on dashboard">
+                <div style="font-size: 11px; color: #666; margin-top: 4px;">This name will appear on your dashboard</div>
+            </div>
+
+            <div class="form-group">
+                <label for="topupAmount">Amount (₦) *</label>
+                <input type="number" id="topupAmount" name="topupAmount" required
+                       placeholder="Enter amount to add" min="100" step="0.01">
+                <div style="font-size: 11px; color: #666; margin-top: 4px;">Minimum: ₦100.00</div>
+            </div>
+
+            <div class="form-group">
+                <label for="narration">Note (Optional)</label>
+                <input type="text" id="narration" name="narration"
+                       placeholder="Add a note for this top-up">
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Add Money
+            </button>
+        </form>
+
+        <div style="background: rgba(50, 20, 87, 0.05); padding: 12px; border-radius: 10px; margin-top: 20px;">
+            <div style="font-size: 12px; color: #666; line-height: 1.6;">
+                <strong style="color: #321457;">Note:</strong> This is a demo app. In production, you would integrate with a payment gateway like Paystack or Flutterwave to process real payments.
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <img src="/img/icons8-money-96.png" alt="Loading" class="loading-icon">
+            <p>Processing Top-up...</p>
+        </div>
+    </div>
+
+    <script src="/js/addmoney.js"></script>
+</body>
+</html>
