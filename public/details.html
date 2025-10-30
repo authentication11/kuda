@@ -29,68 +29,117 @@
             <div class="transaction-time" id="transactionTime">On Oct 26, 2025 at 01:32 PM</div>
         </div>
 
-        <!-- Category Badge -->
+        <!-- Success Status Badge -->
         <div class="transfer-info">
-            <div class="category-badge">
-                <div class="category-icon">
+            <div class="success-badge">
+                <span>Successful</span>
+            </div>
+        </div>
+
+        <!-- Progress Timeline -->
+        <div class="progress-timeline">
+            <div class="timeline-step">
+                <div class="timeline-icon">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="10" fill="currentColor"/>
+                        <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <span class="category-text" id="categoryText">Transport</span>
-                <span class="category-dropdown">▼</span>
+                <div class="timeline-line"></div>
             </div>
-        </div>
-
-        <!-- Recipient Section -->
-        <div class="recipient-section">
-            <div class="detail-row">
-                <span class="label">To</span>
-                <div class="value-with-icon">
-                    <div class="recipient-icon-small">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-                            <path d="M2 10H22" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <span id="recipientName" class="value">PALMPAY</span>
+            <div class="timeline-step">
+                <div class="timeline-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="timeline-line"></div>
+            </div>
+            <div class="timeline-step">
+                <div class="timeline-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M5 13l4 4L19 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                 </div>
             </div>
         </div>
 
-        <!-- Description -->
-        <div class="transaction-details">
-            <div class="detail-row">
-                <span class="label">Description</span>
-                <span class="value" id="description">Transport</span>
+        <!-- Timeline Labels -->
+        <div class="timeline-labels">
+            <div class="timeline-label">
+                <div class="label-title">Payment successful</div>
+                <div class="label-time" id="timePayment">29/10, 21:13:37</div>
+            </div>
+            <div class="timeline-label">
+                <div class="label-title">Processing by bank</div>
+                <div class="label-time" id="timeProcessing">29/10, 21:13:37</div>
+            </div>
+            <div class="timeline-label">
+                <div class="label-title">Received by bank</div>
+                <div class="label-time" id="timeReceived">29/10, 21:14:05</div>
             </div>
         </div>
 
-        <!-- Payment Method & Fees -->
-        <div class="transaction-summary">
-            <div class="summary-row">
-                <span class="label">Payment Method</span>
-                <span class="value">Outward Transfer</span>
+        <!-- Receipt Details Card -->
+        <div class="receipt-card">
+            <!-- To Section -->
+            <div class="receipt-row">
+                <div class="receipt-label">To</div>
+                <div class="receipt-value-row">
+                    <div class="receipt-bank-name" id="recipientName">PALMPAY</div>
+                    <div class="recipient-icon-receipt">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="5" width="20" height="14" rx="2" stroke="white" stroke-width="2"/>
+                            <path d="M2 10H22" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
-            <div class="summary-row">
-                <span class="label">Fees</span>
-                <span class="value" id="fees">₦10.00</span>
-            </div>
-        </div>
 
-        <!-- Account Number -->
-        <div class="transaction-details">
-            <div class="detail-row">
-                <span class="label">Account Number</span>
-                <div class="value value-with-copy">
-                    <span id="accountNumber">9550456443</span>
-                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" onclick="copyToClipboard('accountNumber')">
+            <div class="receipt-divider"></div>
+
+            <!-- Description Section -->
+            <div class="receipt-row">
+                <div class="receipt-label">Description</div>
+                <div class="receipt-value" id="description">Transport</div>
+            </div>
+
+            <div class="receipt-divider"></div>
+
+            <!-- Payment Method & Fees Section -->
+            <div class="receipt-row">
+                <div class="receipt-label">Payment Method</div>
+                <div class="receipt-split">
+                    <div class="receipt-value-left">
+                        <div class="receipt-method-label">Outward Transfer</div>
+                    </div>
+                    <div class="receipt-value-right">
+                        <div class="receipt-fees-label">Fees</div>
+                        <div class="receipt-fees-value" id="fees">₦10.00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="receipt-divider"></div>
+
+            <!-- Account Number Section -->
+            <div class="receipt-row">
+                <div class="receipt-label">Account Number</div>
+                <div class="receipt-value-with-copy">
+                    <span class="receipt-value" id="accountNumber">9550456443</span>
+                    <svg class="copy-icon-receipt" width="20" height="20" viewBox="0 0 24 24" fill="none" onclick="copyToClipboard('accountNumber')">
                         <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
                         <path d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5" stroke="currentColor" stroke-width="2"/>
                     </svg>
                 </div>
             </div>
-        </div>
+
+            <div class="receipt-divider"></div>
+
+            <!-- Amount Section -->
+            <div class="receipt-row">
+                <div class="receipt-label">Amount</div>
+                <div class="receipt-value" id="receiptAmount">₦5,000.00</div>
+            </div>
 
         <!-- Transaction Reference -->
         <div class="transaction-details">

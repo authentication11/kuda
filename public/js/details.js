@@ -61,15 +61,32 @@ function displayTransaction() {
         document.getElementById('recipientName').textContent = 'WALLET';
     }
 
+    // Update receipt amount
+    const receiptAmountEl = document.getElementById('receiptAmount');
+    if (receiptAmountEl) {
+        receiptAmountEl.textContent = `₦${amountValue.toLocaleString('en-NG', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+    }
+
     // Update description (use narration if available)
     const narration = currentTransaction.narration || currentTransaction.description || currentTransaction.title || 'Transfer';
     document.getElementById('description').textContent = narration;
 
-    // Update category text (also use narration)
-    const categoryTextEl = document.getElementById('categoryText');
-    if (categoryTextEl) {
-        categoryTextEl.textContent = narration;
-    }
+    // Update timeline times
+    const txDate = new Date(currentTransaction.date);
+    const formatTime = (dateObj) => {
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const hours = String(dateObj.getHours()).padStart(2, '0');
+        const minutes = String(dateObj.getMinutes()).padStart(2, '0');
+        const seconds = String(dateObj.getSeconds()).padStart(2, '0');
+        return `${day}/${month}, ${hours}:${minutes}:${seconds}`;
+    };
+
+    document.getElementById('timePayment').textContent = formatTime(txDate);
+    document.getElementById('timeProcessing').textContent = formatTime(txDate);
+
+    const receivedDate = new Date(txDate.getTime() + 28000);
+    document.getElementById('timeReceived').textContent = formatTime(receivedDate);
 
     // Update account number
     if (currentTransaction.type === 'debit' && currentTransaction.accountNumber) {
@@ -79,10 +96,16 @@ function displayTransaction() {
     }
 
     // Update transaction reference
-    document.getElementById('transactionRef').textContent = currentTransaction.referenceNumber || '0902672510261232020545027233' + Math.floor(Math.random() * 1000) + 'PP';
+    const refEl = document.getElementById('transactionRef');
+    if (refEl) {
+        refEl.textContent = currentTransaction.referenceNumber || '0902672510261232020545027233' + Math.floor(Math.random() * 1000) + 'PP';
+    }
 
     // Update fees
-    document.getElementById('fees').textContent = '₦10.00';
+    const feesElements = document.querySelectorAll('#fees');
+    feesElements.forEach(el => {
+        el.textContent = '₦10.00';
+    });
 }
 
 // Copy to clipboard function

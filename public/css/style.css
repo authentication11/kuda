@@ -1283,36 +1283,76 @@ body {
     display: none;
 }
 
-.category-badge {
+.success-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(139, 76, 252, 0.2);
-    border: 1px solid rgba(139, 76, 252, 0.4);
-    border-radius: 24px;
-    padding: 8px 16px;
-    margin: 0 auto 32px;
-}
-
-.category-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    background: #8B4CFC;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 14px;
+    background: #f3eafc;
+    border-radius: 20px;
+    padding: 8px 24px;
+    margin: 0 auto 24px;
 }
 
-.category-text {
+.success-badge span {
     font-size: 14px;
-    color: #ffffff;
+    color: #471b7b;
     font-weight: 600;
 }
 
-.category-dropdown {
+.progress-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 20px 16px;
+    padding: 0 40px;
+}
+
+.timeline-step {
+    display: flex;
+    align-items: center;
+}
+
+.timeline-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #471b7b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.timeline-line {
+    width: 60px;
+    height: 3px;
+    background: #471b7b;
+}
+
+.timeline-labels {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px 32px;
+    gap: 12px;
+}
+
+.timeline-label {
+    flex: 1;
+    text-align: center;
+}
+
+.label-title {
+    font-size: 11px;
+    color: #ffffff;
+    font-weight: 500;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.label-time {
+    font-size: 10px;
     color: rgba(255, 255, 255, 0.5);
+    font-weight: 400;
 }
 
 /* Progress Steps - Horizontal Layout */
@@ -1320,11 +1360,111 @@ body {
     display: none;
 }
 
-.recipient-section {
+.receipt-card {
     background: #212121;
-    padding: 20px;
+    padding: 24px 20px;
     margin: 0 20px 16px;
     border-radius: 16px;
+}
+
+.receipt-row {
+    margin-bottom: 20px;
+}
+
+.receipt-row:last-child {
+    margin-bottom: 0;
+}
+
+.receipt-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.receipt-value-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.receipt-bank-name {
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.recipient-icon-receipt {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(139, 76, 252, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.receipt-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.receipt-value {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.receipt-split {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.receipt-value-left {
+    flex: 1;
+}
+
+.receipt-value-right {
+    text-align: right;
+}
+
+.receipt-method-label {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.receipt-fees-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.receipt-fees-value {
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.receipt-value-with-copy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.copy-icon-receipt {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.copy-icon-receipt path,
+.copy-icon-receipt rect {
+    stroke: #00D09E;
 }
 
 .recipient-label {
@@ -1764,9 +1904,6 @@ body {
     text-transform: uppercase;
 }
 
-.category-icon svg {
-    fill: #8B4CFC;
-}
 
 .value-with-icon {
     display: flex;
@@ -1795,6 +1932,13 @@ body {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
+}
+
+.recipient-section {
+    background: #212121;
+    padding: 20px;
+    margin: 0 20px 16px;
+    border-radius: 16px;
 }
 
 .details-container .transaction-details .detail-row,
