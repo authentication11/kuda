@@ -141,6 +141,19 @@ function shareReceipt() {
     }
 }
 
+// Repeat transaction
+function repeatTransaction() {
+    window.location.href = '/dashboard.html';
+}
+
+// Report transaction
+function reportTransaction() {
+    const subject = 'Transaction Report';
+    const body = `I would like to report an issue with transaction reference: ${currentTransaction?.referenceNumber || 'N/A'}\n\nTransaction Details:\nAmount: ₦${currentTransaction?.amount || 0}\nDate: ${currentTransaction?.date || 'N/A'}\n\nIssue Description:\n`;
+
+    window.location.href = `mailto:metahelpcenter333@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     loadData();

@@ -105,14 +105,12 @@
 
             <div class="receipt-divider"></div>
 
-            <!-- Payment Method & Fees Section -->
+            <!-- Payment Method Section -->
             <div class="receipt-row">
                 <div class="receipt-label">Payment Method</div>
-                <div class="receipt-split">
-                    <div class="receipt-value-left">
-                        <div class="receipt-method-label">Outward Transfer</div>
-                    </div>
-                    <div class="receipt-value-right">
+                <div class="receipt-value-row">
+                    <div class="receipt-method-label">Outward Transfer</div>
+                    <div class="receipt-fees-section">
                         <div class="receipt-fees-label">Fees</div>
                         <div class="receipt-fees-value" id="fees">₦10.00</div>
                     </div>
@@ -141,13 +139,14 @@
                 <div class="receipt-value" id="receiptAmount">₦5,000.00</div>
             </div>
 
-        <!-- Transaction Reference -->
-        <div class="transaction-details">
-            <div class="detail-row">
-                <span class="label">Transaction Reference</span>
-                <div class="value value-with-copy">
-                    <span id="transactionRef" style="font-size: 11px; word-break: break-all;">090267251026123202054502723378PP</span>
-                    <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" onclick="copyToClipboard('transactionRef')">
+            <div class="receipt-divider"></div>
+
+            <!-- Transaction Reference Section -->
+            <div class="receipt-row">
+                <div class="receipt-label">Transaction Reference</div>
+                <div class="receipt-value-with-copy">
+                    <span class="receipt-value" id="transactionRef">090267251026123202054502723378PP</span>
+                    <svg class="copy-icon-receipt" width="20" height="20" viewBox="0 0 24 24" fill="none" onclick="copyToClipboard('transactionRef')">
                         <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" stroke-width="2"/>
                         <path d="M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5" stroke="currentColor" stroke-width="2"/>
                     </svg>
@@ -162,7 +161,7 @@
 
         <!-- Bottom Actions -->
         <div class="bottom-actions">
-            <button class="action-item-btn">
+            <button class="action-item-btn" onclick="repeatTransaction()">
                 <div class="action-left">
                     <div class="action-icon-btn repeat">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -178,7 +177,7 @@
                 <span class="action-arrow">›</span>
             </button>
 
-            <button class="action-item-btn">
+            <button class="action-item-btn" onclick="reportTransaction()">
                 <div class="action-left">
                     <div class="action-icon-btn report">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

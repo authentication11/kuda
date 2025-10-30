@@ -1416,24 +1416,14 @@ body {
     font-weight: 600;
 }
 
-.receipt-split {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.receipt-value-left {
-    flex: 1;
-}
-
-.receipt-value-right {
-    text-align: right;
-}
-
 .receipt-method-label {
     font-size: 16px;
     color: #ffffff;
     font-weight: 700;
+}
+
+.receipt-fees-section {
+    text-align: right;
 }
 
 .receipt-fees-label {
@@ -1453,6 +1443,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 8px;
+}
+
+.receipt-value-with-copy .receipt-value {
+    word-break: break-all;
+    flex: 1;
 }
 
 .copy-icon-receipt {
@@ -1706,7 +1702,9 @@ body {
 }
 
 .action-arrow {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 24px;
+    font-weight: 700;
 }
 
 
