@@ -13,6 +13,12 @@ const bankLogos = {
   'Zenith Bank Plc': 'https://i.imgur.com/y8c8Wbn.png'
 };
 
+// Function to get bank logo URL
+function getBankLogoUrl(bankName) {
+  if (!bankName) return null;
+  return bankLogos[bankName] || null;
+}
+
 // Transaction details functionality
 let appData = {
     balance: 10000.00,
@@ -126,18 +132,30 @@ function displayTransaction() {
 
 // Display bank logo
 function displayBankLogo(bankName) {
-    const logoUrl = bankLogos[bankName];
     const bankLogoImg = document.getElementById('bankLogo');
     const bankLogoFallback = document.getElementById('bankLogoFallback');
 
-    if (logoUrl && bankLogoImg) {
+    if (!bankLogoImg) return;
+
+    const logoUrl = getBankLogoUrl(bankName);
+
+    if (logoUrl) {
         bankLogoImg.src = logoUrl;
         bankLogoImg.style.display = 'block';
-        bankLogoFallback.style.display = 'none';
+        if (bankLogoFallback) bankLogoFallback.style.display = 'none';
+
         bankLogoImg.onerror = function() {
             this.style.display = 'none';
-            bankLogoFallback.style.display = 'flex';
+            if (bankLogoFallback) bankLogoFallback.style.display = 'flex';
         };
+
+        bankLogoImg.onload = function() {
+            this.style.display = 'block';
+            if (bankLogoFallback) bankLogoFallback.style.display = 'none';
+        };
+    } else {
+        bankLogoImg.style.display = 'none';
+        if (bankLogoFallback) bankLogoFallback.style.display = 'flex';
     }
 }
 

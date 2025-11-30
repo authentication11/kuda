@@ -13,6 +13,12 @@ const bankLogos = {
   'Zenith Bank Plc': 'https://i.imgur.com/y8c8Wbn.png'
 };
 
+// Function to get bank logo URL
+function getBankLogoUrl(bankName) {
+  if (!bankName) return null;
+  return bankLogos[bankName] || null;
+}
+
 // Transfer page functionality
 let appData = {
     balance: 10000.00,
