@@ -1,3 +1,18 @@
+// Bank Logo Mapping
+const bankLogos = {
+  'Access Bank': 'https://i.imgur.com/3Aii5hd.jpeg',
+  'Ecobank Nigeria': 'https://i.imgur.com/9l0WS8C.jpeg',
+  'Fidelity Bank Nigeria': 'https://i.imgur.com/cXz0fFL.png',
+  'First Bank of Nigeria': 'https://i.imgur.com/FkGt7r1.jpeg',
+  'Guaranty Trust Bank': 'https://i.imgur.com/1atacbl.png',
+  'Moniepoint': 'https://i.imgur.com/GiQWkmw.jpeg',
+  'Opay': 'https://i.imgur.com/YAIOeGj.png',
+  'PalmPay': 'https://i.imgur.com/YbUdktd.png',
+  'Sterling Bank Plc': 'https://i.imgur.com/qyVV90r.png',
+  'Union Bank of Nigeria': 'https://i.imgur.com/518WtnU.png',
+  'Zenith Bank Plc': 'https://i.imgur.com/y8c8Wbn.png'
+};
+
 // Transaction details functionality
 let appData = {
     balance: 10000.00,
@@ -57,6 +72,7 @@ function displayTransaction() {
     // Update recipient name
     if (currentTransaction.type === 'debit') {
         document.getElementById('recipientName').textContent = currentTransaction.bankName || 'BANK';
+        displayBankLogo(currentTransaction.bankName);
     } else {
         document.getElementById('recipientName').textContent = 'WALLET';
     }
@@ -108,6 +124,23 @@ function displayTransaction() {
     });
 }
 
+// Display bank logo
+function displayBankLogo(bankName) {
+    const logoUrl = bankLogos[bankName];
+    const bankLogoImg = document.getElementById('bankLogo');
+    const bankLogoFallback = document.getElementById('bankLogoFallback');
+
+    if (logoUrl && bankLogoImg) {
+        bankLogoImg.src = logoUrl;
+        bankLogoImg.style.display = 'block';
+        bankLogoFallback.style.display = 'none';
+        bankLogoImg.onerror = function() {
+            this.style.display = 'none';
+            bankLogoFallback.style.display = 'flex';
+        };
+    }
+}
+
 // Copy to clipboard function
 function copyToClipboard(elementId) {
     const element = document.getElementById(elementId);
@@ -120,25 +153,58 @@ function copyToClipboard(elementId) {
     });
 }
 
-// Share receipt
-function shareReceipt() {
-    if (navigator.share && currentTransaction) {
-        const text = `Transaction Receipt\nAmount: ₦${currentTransaction.amount.toLocaleString('en-NG', {minimumFractionDigits: 2})}\n${currentTransaction.type === 'debit' ? `Recipient: ${currentTransaction.accountName}\nBank: ${currentTransaction.bankName}` : 'Type: Wallet Top-up'}\nReference: ${currentTransaction.referenceNumber}\nDate: ${new Date(currentTransaction.date).toLocaleString()}`;
+// Share receipt as image
+async function shareReceipt() {
+    try {
+        const receiptCard = document.querySelector('.receipt-card');
 
-        navigator.share({
-            title: 'Transaction Receipt',
-            text: text
-        }).catch(err => console.log('Share failed:', err));
-    } else {
-        // Fallback: Create shareable image or text
-        const text = `Transaction Receipt\nAmount: ₦${currentTransaction?.amount.toLocaleString('en-NG', {minimumFractionDigits: 2})}\nReference: ${currentTransaction?.referenceNumber}`;
+        if (!receiptCard) {
+            alert('Receipt not found!');
+            return;
+        }
 
-        navigator.clipboard.writeText(text).then(() => {
-            alert('Receipt details copied to clipboard!');
-        }).catch(() => {
-            alert('Unable to share receipt. Please try again.');
+        const canvas = await html2canvas(receiptCard, {
+            backgroundColor: '#212121',
+            scale: 2,
+            logging: false,
+            useCORS: true,
+            allowTaint: true
         });
+
+        const image = canvas.toDataURL('image/png');
+
+        if (navigator.share) {
+            try {
+                const blob = await (await fetch(image)).blob();
+                const file = new File([blob], 'receipt.png', { type: 'image/png' });
+
+                await navigator.share({
+                    title: 'Transaction Receipt',
+                    text: 'Check out my transaction receipt',
+                    files: [file]
+                });
+            } catch (shareError) {
+                if (shareError.name !== 'AbortError') {
+                    downloadReceiptImage(image);
+                }
+            }
+        } else {
+            downloadReceiptImage(image);
+        }
+    } catch (error) {
+        console.error('Error capturing receipt:', error);
+        alert('Could not capture receipt. Please try again.');
     }
+}
+
+// Download receipt image
+function downloadReceiptImage(dataUrl) {
+    const link = document.createElement('a');
+    link.href = dataUrl;
+    link.download = `receipt_${Date.now()}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // Repeat transaction

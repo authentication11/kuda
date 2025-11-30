@@ -1963,3 +1963,154 @@ body {
 .details-container .recipient-section .detail-row {
     padding: 16px 0;
 }
+
+/* PIN Modal Styles */
+.pin-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: flex-end;
+    z-index: 9999;
+    animation: slideUp 0.3s ease-out;
+}
+
+.pin-modal.hidden {
+    display: none;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+.pin-modal-content {
+    background: #212121;
+    width: 100%;
+    padding: 32px 20px;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.pin-modal-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.pin-modal-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.pin-modal-header p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+.pin-input-container {
+    margin-bottom: 32px;
+}
+
+.pin-input {
+    width: 100%;
+    padding: 16px;
+    font-size: 32px;
+    text-align: center;
+    letter-spacing: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: #1a1a1a;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.pin-input:focus {
+    outline: none;
+    border-color: #6a11cb;
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.3);
+}
+
+.pin-error {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 8px;
+    text-align: center;
+    display: none;
+}
+
+.pin-error:not(.hidden) {
+    display: block;
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.pin-modal-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.pin-cancel-btn,
+.pin-verify-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pin-cancel-btn {
+    background: #2a2a2a;
+    color: #ffffff;
+}
+
+.pin-cancel-btn:active {
+    background: #3a3a3a;
+}
+
+.pin-verify-btn {
+    background: #6a11cb;
+    color: #ffffff;
+}
+
+.pin-verify-btn:active {
+    background: #5a0fbb;
+    transform: scale(0.98);
+}
+
+/* Bank Logo in Receipt */
+.bank-logo-container {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+    flex-shrink: 0;
+}
+
+.bank-logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}

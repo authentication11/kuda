@@ -8,6 +8,7 @@
     <meta name="theme-color" content="#6a11cb">
     <link rel="icon" type="image/png" sizes="96x96" href="/img/kuda.png">
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="details-container">
@@ -86,11 +87,14 @@
                 <div class="receipt-label">To</div>
                 <div class="receipt-value-row">
                     <div class="receipt-bank-name" id="recipientName">PALMPAY</div>
-                    <div class="recipient-icon-receipt">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                            <rect x="2" y="5" width="20" height="14" rx="2" stroke="white" stroke-width="2"/>
-                            <path d="M2 10H22" stroke="white" stroke-width="2"/>
-                        </svg>
+                    <div class="bank-logo-container" id="bankLogoContainer">
+                        <img id="bankLogo" src="" alt="Bank Logo" style="display: none;">
+                        <div class="recipient-icon-receipt" id="bankLogoFallback">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <rect x="2" y="5" width="20" height="14" rx="2" stroke="white" stroke-width="2"/>
+                                <path d="M2 10H22" stroke="white" stroke-width="2"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "express-session": "^1.17.3"
+    "express-session": "^1.17.3",
+    "html2canvas": "^1.4.1"
   },
   "keywords": [
     "receipt",

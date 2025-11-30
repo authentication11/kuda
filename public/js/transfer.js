@@ -1,9 +1,27 @@
+// Bank Logo Mapping
+const bankLogos = {
+  'Access Bank': 'https://i.imgur.com/3Aii5hd.jpeg',
+  'Ecobank Nigeria': 'https://i.imgur.com/9l0WS8C.jpeg',
+  'Fidelity Bank Nigeria': 'https://i.imgur.com/cXz0fFL.png',
+  'First Bank of Nigeria': 'https://i.imgur.com/FkGt7r1.jpeg',
+  'Guaranty Trust Bank': 'https://i.imgur.com/1atacbl.png',
+  'Moniepoint': 'https://i.imgur.com/GiQWkmw.jpeg',
+  'Opay': 'https://i.imgur.com/YAIOeGj.png',
+  'PalmPay': 'https://i.imgur.com/YbUdktd.png',
+  'Sterling Bank Plc': 'https://i.imgur.com/qyVV90r.png',
+  'Union Bank of Nigeria': 'https://i.imgur.com/518WtnU.png',
+  'Zenith Bank Plc': 'https://i.imgur.com/y8c8Wbn.png'
+};
+
 // Transfer page functionality
 let appData = {
     balance: 10000.00,
     userName: 'BABATUNDE',
     transactions: []
 };
+
+let pendingTransaction = null;
+let correctPin = '8624';
 
 // Load data
 function loadData() {
@@ -60,6 +78,46 @@ document.getElementById('amount')?.addEventListener('input', function() {
     }
 });
 
+// Open PIN Modal
+function openPinModal() {
+    document.getElementById('pinModal').classList.remove('hidden');
+    document.getElementById('pinInput').value = '';
+    document.getElementById('pinError').classList.add('hidden');
+    document.getElementById('pinInput').focus();
+}
+
+// Close PIN Modal
+function closePinModal() {
+    document.getElementById('pinModal').classList.add('hidden');
+    pendingTransaction = null;
+}
+
+// Verify PIN
+function verifyPin() {
+    const pin = document.getElementById('pinInput').value;
+
+    if (pin === correctPin) {
+        document.getElementById('pinModal').classList.add('hidden');
+        completeTransfer();
+    } else {
+        document.getElementById('pinError').classList.remove('hidden');
+        document.getElementById('pinInput').value = '';
+        document.getElementById('pinInput').focus();
+    }
+}
+
+// Allow Enter key to submit PIN
+document.addEventListener('DOMContentLoaded', function() {
+    const pinInput = document.getElementById('pinInput');
+    if (pinInput) {
+        pinInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyPin();
+            }
+        });
+    }
+});
+
 // Handle form submission
 document.getElementById('transferForm')?.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -72,11 +130,8 @@ document.getElementById('transferForm')?.addEventListener('submit', function(e) 
         return;
     }
 
-    // Show loading
-    document.getElementById('loadingOverlay').classList.remove('hidden');
-
-    // Create transaction
-    const transaction = {
+    // Create transaction object
+    pendingTransaction = {
         id: 'TXN' + Date.now(),
         type: 'debit',
         accountName: document.getElementById('accountName').value,
@@ -90,22 +145,33 @@ document.getElementById('transferForm')?.addEventListener('submit', function(e) 
         referenceNumber: generateReference()
     };
 
+    // Show PIN modal instead of processing immediately
+    openPinModal();
+});
+
+// Complete transfer after PIN verification
+function completeTransfer() {
+    if (!pendingTransaction) return;
+
+    // Show loading
+    document.getElementById('loadingOverlay').classList.remove('hidden');
+
     // Deduct from balance
-    appData.balance -= amount;
+    appData.balance -= pendingTransaction.amount;
 
     // Add to transactions (newest first)
-    appData.transactions.unshift(transaction);
+    appData.transactions.unshift(pendingTransaction);
 
     // Save data
     localStorage.setItem('kudasavingsData', JSON.stringify(appData));
-    localStorage.setItem('currentTransaction', JSON.stringify(transaction));
+    localStorage.setItem('currentTransaction', JSON.stringify(pendingTransaction));
 
     // Simulate realistic processing time
     setTimeout(() => {
         document.getElementById('loadingOverlay').classList.add('hidden');
         window.location.href = '/success.html';
     }, 6000);
-});
+}
 
 // Generate reference number
 function generateReference() {

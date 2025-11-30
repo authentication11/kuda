@@ -70,6 +70,24 @@
         </form>
     </div>
 
+    <!-- PIN Modal -->
+    <div id="pinModal" class="pin-modal hidden">
+        <div class="pin-modal-content">
+            <div class="pin-modal-header">
+                <h2>Enter Transfer PIN</h2>
+                <p>Enter your 4-digit PIN to complete this transfer</p>
+            </div>
+            <div class="pin-input-container">
+                <input type="password" id="pinInput" class="pin-input" maxlength="4" placeholder="••••" inputmode="numeric">
+                <div id="pinError" class="pin-error hidden">Incorrect PIN. Please try again.</div>
+            </div>
+            <div class="pin-modal-actions">
+                <button type="button" class="pin-cancel-btn" onclick="closePinModal()">Cancel</button>
+                <button type="button" class="pin-verify-btn" onclick="verifyPin()">Verify</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay hidden">
         <div class="loading-spinner">
@@ -77,6 +95,7 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="/js/transfer.js"></script>
 </body>
 </html>
