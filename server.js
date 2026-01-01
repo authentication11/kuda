@@ -35,12 +35,37 @@ app.get('/browserconfig.xml', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'browserconfig.xml'));
 });
 
+// Middleware to check password verification
+const checkPassword = (req, res, next) => {
+  if (req.session.passwordVerified) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+};
+
 // Routes
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'password.html'));
+});
+
+app.get('/dashboard', checkPassword, (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
 
-app.post('/submit-transaction', (req, res) => {
+app.post('/api/verify-password', (req, res) => {
+  const { password } = req.body;
+  const CORRECT_PASSWORD = '019283';
+
+  if (password === CORRECT_PASSWORD) {
+    req.session.passwordVerified = true;
+    res.json({ success: true });
+  } else {
+    res.status(401).json({ success: false, error: 'Incorrect password' });
+  }
+});
+
+app.post('/submit-transaction', checkPassword, (req, res) => {
   const transactionData = {
     accountName: req.body.accountName,
     bankName: req.body.bankName,
@@ -62,22 +87,38 @@ app.post('/submit-transaction', (req, res) => {
   res.redirect('/receipt');
 });
 
-app.get('/receipt', (req, res) => {
+app.get('/receipt', checkPassword, (req, res) => {
   if (!req.session.transactionData) {
-    return res.redirect('/');
+    return res.redirect('/dashboard');
   }
   res.sendFile(path.join(__dirname, 'public', 'receipt.html'));
 });
 
-app.get('/details', (req, res) => {
+app.get('/details', checkPassword, (req, res) => {
   if (!req.session.transactionData) {
-    return res.redirect('/');
+    return res.redirect('/dashboard');
   }
   res.sendFile(path.join(__dirname, 'public', 'details.html'));
 });
 
+app.get('/transfer', checkPassword, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'transfer.html'));
+});
+
+app.get('/history', checkPassword, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'history.html'));
+});
+
+app.get('/addmoney', checkPassword, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'addmoney.html'));
+});
+
+app.get('/success', checkPassword, (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'success.html'));
+});
+
 // API endpoint to get transaction data
-app.get('/api/transaction-data', (req, res) => {
+app.get('/api/transaction-data', checkPassword, (req, res) => {
   if (!req.session.transactionData) {
     return res.status(404).json({ error: 'No transaction data found' });
   }
